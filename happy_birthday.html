@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Parbati ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      background:
+        radial-gradient(circle at top, #ff8fb3 0%, transparent 35%),
+        linear-gradient(135deg, #17002b, #4b0b45, #ff477e);
+      overflow-x: hidden;
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      color: white;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: .2; transform: scale(.7); }
+      to { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Pages */
+    .page {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page.active {
+      display: flex;
+      animation: pageIn .7s ease;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      width: min(92%, 850px);
+      text-align: center;
+      padding: 45px 30px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 9vw, 5rem);
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #fff, #ffd1e2, #fff);
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200%;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      to { background-position: 200%; }
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .cake {
+      font-size: 80px;
+      animation: bounce 2s infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .heart {
+      font-size: 35px;
+      margin: 20px;
+      animation: heartbeat 1.2s infinite;
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.25); }
+    }
+
+    /* Buttons */
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ff4f81, #ff8fab);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255,79,129,.4);
+      transition: .3s;
+    }
+
+    button:hover {
+      transform: translateY(-4px) scale(1.04);
+    }
+
+    /* Photo Frame */
+    .photo-frame {
+      width: min(90%, 500px);
+      height: 350px;
+      margin: 25px auto;
+      padding: 12px;
+      background: linear-gradient(135deg, #ffd1e2, #fff, #ff8fab);
+      border-radius: 25px;
+      box-shadow:
+        0 0 0 5px rgba(255,255,255,.15),
+        0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      background: rgba(0,0,0,.2);
+      display: block;
+    }
+
+    .photo-caption {
+      margin-top: 15px;
+      opacity: .9;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .gallery .photo-frame {
+      width: 100%;
+      height: 250px;
+      margin: 0;
+    }
+
+    /* Surprise */
+    .surprise {
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.12);
+      margin-top: 25px;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 25px;
+      animation: floatUp 5s linear forwards;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .footer {
+      margin-top: 30px;
+      opacity: .7;
+      font-size: .85rem;
+    }
+
+    @media(max-width:600px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-frame {
+        height: 300px;
+      }
+
+      .gallery .photo-frame {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+
+<!-- ================= PAGE 1 ================= -->
+
+<section class="page active" id="page1">
+
+  <div class="container">
+
+    <div class="cake">🎂</div>
+
+    <h1>
+      Happy Birthday<br>
+      Parbati! ❤️
+    </h1>
+
+    <p>
+      Today is a very special day because it's the day
+      someone very special was born. ✨
+    </p>
+
+    <div class="heart">♥</div>
+
+    <p>
+      Wishing you a birthday filled with beautiful moments,
+      endless smiles, wonderful surprises and lots of happiness. 💕
+    </p>
+
+    <div class="buttons">
+      <button onclick="nextPage()">
+        Start the Surprise 💖
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PAGE 2 ================= -->
+
+<section class="page" id="page2">
+
+  <div class="container">
+
+    <h2>🌸 A Beautiful Memory 🌸</h2>
+
+    <!-- PUT YOUR PHOTO LINK INSIDE src="" -->
+    <div class="photo-frame">
+      <img src="photo5.jpg" alt="Parbati Photo">
+    </div>
+
+    <p class="photo-caption">
+      One beautiful picture deserves a beautiful frame. ❤️
+    </p>
+
+    <div class="buttons">
+      <button onclick="prevPage()">⬅ Back</button>
+      <button onclick="nextPage()">Next ➜</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PAGE 3 ================= -->
+
+<section class="page" id="page3">
+
+  <div class="container">
+
+    <h2>💖 Some Special Memories 💖</h2>
+
+    <p>
+      Always be happy.
+    </p>
+
+    <div class="gallery">
+
+      <!-- PHOTO 1 -->
+      <div class="photo-frame">
+        <img src="photo1.jpeg" alt="Memory 1">
+      </div>
+
+      <!-- PHOTO 2 -->
+      <div class="photo-frame">
+        <img src="photo2.jpeg" alt="Memory 2">
+      </div>
+
+      <!-- PHOTO 3 -->
+      <div class="photo-frame">
+        <img src="photo3.png" alt="Memory 3">
+      </div>
+
+      <!-- PHOTO 4 -->
+      <div class="photo-frame">
+        <img src="photo4.jpg" alt="Memory 4">
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button onclick="prevPage()">⬅ Back</button>
+      <button onclick="nextPage()">Next ➜</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PAGE 4 ================= -->
+
+<section class="page" id="page4">
+
+  <div class="container">
+
+    <h2>💌 A Message For You 💌</h2>
+
+    <div class="heart">❤️</div>
+
+    <p>
+      May this new chapter of your life bring you
+      closer to everything you've ever dreamed of.
+      <br><br>
+
+      May you always have reasons to smile,
+      people who love you,
+      and memories that make your heart happy.
+      <br><br>
+
+      Keep shining, keep smiling,
+      and never forget how special you are. 🌸
+      <br><br>
+
+      You deserve all the beautiful things life has to offer. ❤️
+    </p>
+
+    <div class="buttons">
+      <button onclick="prevPage()">⬅ Back</button>
+      <button onclick="nextPage()">One Last Surprise 🎁</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PAGE 5 ================= -->
+
+<section class="page" id="page5">
+
+  <div class="container">
+
+    <div class="cake">🎁</div>
+
+    <h1>One Last Surprise ❤️</h1>
+
+    <button onclick="showSurprise()">
+      Open Your Surprise ✨
+    </button>
+
+    <div class="surprise" id="surprise" style="display:none;">
+
+      <h2>💖 Happy Birthday Parbati 💖</h2>
+
+      <p>
+        No matter where life takes you,
+        I hope every chapter brings something
+        beautiful your way.
+        <br><br>
+
+        May your smile always stay bright,
+        your heart always stay happy,
+        and your dreams always come true.
+        <br><br>
+
+        Happy Birthday once again! 🥳🎂
+        <br><br>
+
+        With lots of love ❤️
+      </p>
+
+    </div>
+
+    <div class="buttons">
+      <button onclick="prevPage()">⬅ Back</button>
+      <button onclick="location.reload()">🔄 Start Again</button>
+    </div>
+
+    <div class="footer">
+      Made with ❤️ specially for Parbati
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+  /* ================= STARS ================= */
+
+  const stars = document.getElementById("stars");
+
+  for (let i = 0; i < 60; i++) {
+
+    const star = document.createElement("span");
+
+    star.className = "star";
+    star.innerHTML = "✦";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize =
+      (Math.random() * 12 + 5) + "px";
+
+    star.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    stars.appendChild(star);
+  }
+
+
+  /* ================= PAGE SYSTEM ================= */
+
+  let currentPage = 1;
+  const totalPages = 5;
+
+  function showPage(pageNumber) {
+
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.remove("active");
+    });
+
+    document
+      .getElementById("page" + pageNumber)
+      .classList.add("active");
+
+    currentPage = pageNumber;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function nextPage() {
+
+    if (currentPage < totalPages) {
+      showPage(currentPage + 1);
+
+      createHearts(8);
+    }
+
+  }
+
+
+  function prevPage() {
+
+    if (currentPage > 1) {
+      showPage(currentPage - 1);
+    }
+
+  }
+
+
+  /* ================= SURPRISE ================= */
+
+  function showSurprise() {
+
+    document.getElementById("surprise").style.display = "block";
+
+    createHearts(40);
+
+  }
+
+
+  function createHearts(amount) {
+
+    for (let i = 0; i < amount; i++) {
+
+      setTimeout(() => {
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        const emojis = [
+          "❤️",
+          "💕",
+          "💖",
+          "💗",
+          "✨",
+          "🌸",
+          "💝"
+        ];
+
+        heart.innerHTML =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+          (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+
+      }, i * 80);
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
